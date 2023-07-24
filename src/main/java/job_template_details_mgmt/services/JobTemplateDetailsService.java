@@ -1,8 +1,6 @@
 package job_template_details_mgmt.services;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +24,15 @@ public class JobTemplateDetailsService implements I_JobTemplateDetailsService
 	private JobTemplateDetailsRepo jobTemplateDetailsRepo;
 
 	@Override
-	public JobTemplateDetailsDTO newJobTemplateDetails(JobTemplateDetailsDTO jobTemplateDetailsDTO) 
+	public JobTemplateDetailsDTO newJobTemplateDetail(JobTemplateDetailsDTO jobTemplateDetailsDTO) 
 	{
 		JobTemplateDetailsPK jobTemplateDetailsPK = new JobTemplateDetailsPK();
 		jobTemplateDetailsPK.setJobTemplateSeqNo(jobTemplateDetailsDTO.getJobTemplateSeqNo());
 		jobTemplateDetailsPK.setJobLevelNo(jobTemplateDetailsDTO.getJobLevelNo());
-		jobTemplateDetailsPK.setJobTypeSeqNo(jobTemplateDetailsDTO.getJobTypeSeqNo());
+		jobTemplateDetailsPK.setJOB_SEQ_NO(jobTemplateDetailsDTO.getJobSeqNo());
 		jobTemplateDetailsPK.setSeqNo(jobTemplateDetailsDTO.getSeqNo());
 		jobTemplateDetailsPK.setTargetSeqNo(jobTemplateDetailsDTO.getTargetSeqNo());
-		jobTemplateDetailsPK.setTargetTypeSeqNo(jobTemplateDetailsDTO.getTargetTypeSeqNo());
+		jobTemplateDetailsPK.setTargetClassSeqNo(jobTemplateDetailsDTO.getTargetClassSeqNo());
 		JobTemplateDetails jobTemplateDetails2 = null;
 		JobTemplateDetailsDTO jobTemplateDetailsDTO2 = null;
 
@@ -56,74 +54,37 @@ public class JobTemplateDetailsService implements I_JobTemplateDetailsService
 	}
 
 	@Override
-	public ArrayList<JobTemplateDetailsDTO> getSelectJobTemplateDetails(
-			ArrayList<Long> jobTemplateDetailsSeqNos) {
+	public ArrayList<JobTemplateDetailsDTO> getSelectJobTemplateDetails(ArrayList<Long> jobTemplateDetailsSeqNos) {
 		ArrayList<JobTemplateDetails> jobTemplateDetails = null;
 		ArrayList<JobTemplateDetailsDTO> jobTemplateDetailsDTOs = null;
-
 		if (jobTemplateDetailsSeqNos != null) {
-			jobTemplateDetails = jobTemplateDetailsRepo
-					.getSelectJobTemplateDetails(jobTemplateDetailsSeqNos);
-			if (jobTemplateDetails != null) {
-				jobTemplateDetailsDTOs = this.getJobTemplateDetailsDTOs(jobTemplateDetails);
+			jobTemplateDetails = jobTemplateDetailsRepo.getSelectJobTemplateDetails(jobTemplateDetailsSeqNos);
+			if (jobTemplateDetails != null) 
+			{
+			jobTemplateDetailsDTOs = this.getJobTemplateDetailsDTOs(jobTemplateDetails);
 			}
 		}
 		return jobTemplateDetailsDTOs;
 	}
 
 	@Override
-	public JobTemplateDetailsDTO getJobTemplateDetailsById(long jobTemplateSeqNo, long jobLevelNo, long seqNo, Long jobTypeSeqNo, long targetSeqNo, BigDecimal targetTypeSeqNo) 
-	{
-		JobTemplateDetailsPK jobTemplateDetailsPK = new JobTemplateDetailsPK();		
-		jobTemplateDetailsPK.setJobTemplateSeqNo(jobTemplateSeqNo);
-		jobTemplateDetailsPK.setJobLevelNo(jobLevelNo);
-		jobTemplateDetailsPK.setJobTypeSeqNo(jobTypeSeqNo);
-		jobTemplateDetailsPK.setSeqNo(seqNo);
-		jobTemplateDetailsPK.setTargetSeqNo(targetSeqNo);
-		jobTemplateDetailsPK.setTargetTypeSeqNo(targetTypeSeqNo);
-		Optional<JobTemplateDetails> jobTemplateDetails = jobTemplateDetailsRepo.findById(jobTemplateDetailsPK);
-		JobTemplateDetailsDTO jobTemplateDetailsDTO = null;
-
-		if (jobTemplateDetails.isPresent()) {
-			jobTemplateDetailsDTO = getJobTemplateDetailsDTO(jobTemplateDetails.get());
-		}
-		return jobTemplateDetailsDTO;
-	}
-
-	@Override
-	public void updJobTemplateDetails(JobTemplateDetailsDTO jobTemplateDetailsDTO)
+	public void updJobTemplateDetail(JobTemplateDetailsDTO jobTemplateDetailsDTO)
 	{
 		JobTemplateDetailsPK jobTemplateDetailsPK = new JobTemplateDetailsPK();
 		jobTemplateDetailsPK.setJobTemplateSeqNo(jobTemplateDetailsDTO.getJobTemplateSeqNo());
 		jobTemplateDetailsPK.setJobLevelNo(jobTemplateDetailsDTO.getJobLevelNo());
-		jobTemplateDetailsPK.setJobTypeSeqNo(jobTemplateDetailsDTO.getJobTypeSeqNo());
+		jobTemplateDetailsPK.setJOB_SEQ_NO(jobTemplateDetailsDTO.getJobSeqNo());
 		jobTemplateDetailsPK.setSeqNo(jobTemplateDetailsDTO.getSeqNo());
-		jobTemplateDetailsPK.setTargetSeqNo(jobTemplateDetailsDTO.getTargetSeqNo());		
+		jobTemplateDetailsPK.setTargetSeqNo(jobTemplateDetailsDTO.getTargetSeqNo());
+		jobTemplateDetailsPK.setTargetClassSeqNo(jobTemplateDetailsDTO.getTargetClassSeqNo());		
 		JobTemplateDetails jobTemplateDetails2 = null;
-		Optional<JobTemplateDetails> jobTemplateDetails = jobTemplateDetailsRepo.findById(jobTemplateDetailsPK);
-
-		if (jobTemplateDetails.isPresent()) {
+		
+		if (jobTemplateDetailsRepo.existsById(jobTemplateDetailsPK)) 
+		{
 			jobTemplateDetails2 = this.setJobTemplateDetails(jobTemplateDetailsDTO);
 			jobTemplateDetails2.setId(jobTemplateDetailsPK);
 			;
 			jobTemplateDetailsRepo.save(jobTemplateDetails2);
-		}
-	}
-
-	@Override
-	public void delJobTemplateDetails(long jobTemplateSeqNo, long jobLevelNo, long seqNo, Long jobTypeSeqNo, long targetSeqNo, BigDecimal targetTypeSeqNo) 
-	{
-		JobTemplateDetailsPK jobTemplateDetailsPK = new JobTemplateDetailsPK();		
-		jobTemplateDetailsPK.setJobTemplateSeqNo(jobTemplateSeqNo);
-		jobTemplateDetailsPK.setJobLevelNo(jobLevelNo);
-		jobTemplateDetailsPK.setJobTypeSeqNo(jobTypeSeqNo);
-		jobTemplateDetailsPK.setSeqNo(seqNo);
-		jobTemplateDetailsPK.setTargetSeqNo(targetSeqNo);
-		jobTemplateDetailsPK.setTargetTypeSeqNo(targetTypeSeqNo);
-		
-		if (jobTemplateDetailsRepo.existsById(jobTemplateDetailsPK)) 
-		{
-			jobTemplateDetailsRepo.deleteById(jobTemplateDetailsPK);
 		}
 	}
 
@@ -135,7 +96,7 @@ public class JobTemplateDetailsService implements I_JobTemplateDetailsService
 	@Override
 	public void delSelectJobTemplateDetails(ArrayList<Long> jobTemplateDetailsSeqNos) 
 	{
-		jobTemplateDetailsRepo.deleteSelectJobTemplateDetails(jobTemplateDetailsSeqNos);
+		jobTemplateDetailsRepo.delSelectJobTemplateDetails(jobTemplateDetailsSeqNos);;
 	}
 
 	private ArrayList<JobTemplateDetailsDTO> getJobTemplateDetailsDTOs(
@@ -154,10 +115,10 @@ public class JobTemplateDetailsService implements I_JobTemplateDetailsService
 	{
 		JobTemplateDetailsDTO jobTemplateDetailsDTO = new JobTemplateDetailsDTO();
 		jobTemplateDetailsDTO.setJobTemplateSeqNo(jobTemplateDetails.getId().getJobTemplateSeqNo());		
-		jobTemplateDetailsDTO.setJobTypeSeqNo(jobTemplateDetails.getId().getJobTypeSeqNo());
+		jobTemplateDetailsDTO.setJobSeqNo(jobTemplateDetails.getId().getJOB_SEQ_NO());
 		jobTemplateDetailsDTO.setSeqNo(jobTemplateDetails.getId().getSeqNo());
 		jobTemplateDetailsDTO.setTargetSeqNo(jobTemplateDetails.getId().getTargetSeqNo());
-		jobTemplateDetailsDTO.setTargetTypeSeqNo(jobTemplateDetails.getId().getTargetTypeSeqNo());
+		jobTemplateDetailsDTO.setTargetClassSeqNo(jobTemplateDetails.getId().getTargetClassSeqNo());
 		jobTemplateDetailsDTO.setJobLevelNo(jobTemplateDetails.getId().getJobLevelNo());
 		jobTemplateDetailsDTO.setDaysPlus(jobTemplateDetailsDTO.getDaysPlus());
 		jobTemplateDetailsDTO.setDurDays(jobTemplateDetailsDTO.getDurDays());
@@ -175,6 +136,14 @@ public class JobTemplateDetailsService implements I_JobTemplateDetailsService
 	private JobTemplateDetails setJobTemplateDetails(JobTemplateDetailsDTO cDTO) 
 	{
 		JobTemplateDetails jobTemplateDetails = new JobTemplateDetails();
+		JobTemplateDetailsPK jobTemplateDetailsPK = new JobTemplateDetailsPK();
+		jobTemplateDetailsPK.setJobTemplateSeqNo(cDTO.getJobTemplateSeqNo());
+		jobTemplateDetailsPK.setJobLevelNo(cDTO.getJobLevelNo());
+		jobTemplateDetailsPK.setJOB_SEQ_NO(cDTO.getJobSeqNo());
+		jobTemplateDetailsPK.setSeqNo(cDTO.getSeqNo());
+		jobTemplateDetailsPK.setTargetSeqNo(cDTO.getTargetSeqNo());
+		jobTemplateDetailsPK.setTargetClassSeqNo(cDTO.getTargetClassSeqNo());
+		jobTemplateDetails.setId(jobTemplateDetailsPK);
 		jobTemplateDetails.setDaysPlus(cDTO.getDaysPlus());
 		jobTemplateDetails.setDurDays(cDTO.getDurDays());
 		jobTemplateDetails.setDurHours(cDTO.getDurHours());

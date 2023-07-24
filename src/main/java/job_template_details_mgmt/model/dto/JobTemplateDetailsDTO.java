@@ -1,11 +1,9 @@
 package job_template_details_mgmt.model.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 public class JobTemplateDetailsDTO implements Serializable {
-	
-	
+
 	/**
 	 * 
 	 */
@@ -13,9 +11,9 @@ public class JobTemplateDetailsDTO implements Serializable {
 	private long jobTemplateSeqNo;
 	private long jobLevelNo;
 	private Long seqNo;
-	private Long jobTypeSeqNo;
+	private Long jobSeqNo;
 	private long targetSeqNo;
-	private BigDecimal targetTypeSeqNo;
+	private Long targetClassSeqNo;
 	private Integer weeksPlus;
 	private Integer monthsPlus;
 	private Integer daysPlus;
@@ -30,6 +28,14 @@ public class JobTemplateDetailsDTO implements Serializable {
 	private Integer predecessorSeqNo;
 	private Integer secondsPlus;
 	private Character durationFlag;
+
+	public Long getJobSeqNo() {
+		return jobSeqNo;
+	}
+
+	public void setJobSeqNo(Long jobSeqNo) {
+		this.jobSeqNo = jobSeqNo;
+	}
 
 	public long getJobTemplateSeqNo() {
 		return jobTemplateSeqNo;
@@ -55,12 +61,12 @@ public class JobTemplateDetailsDTO implements Serializable {
 		this.seqNo = seqNo;
 	}
 
-	public Long getJobTypeSeqNo() {
-		return jobTypeSeqNo;
+	public Long getJobClassSeqNo() {
+		return jobSeqNo;
 	}
 
-	public void setJobTypeSeqNo(Long jobTypeSeqNo) {
-		this.jobTypeSeqNo = jobTypeSeqNo;
+	public void setJobClassSeqNo(Long jobSeqNo) {
+		this.jobSeqNo = jobSeqNo;
 	}
 
 	public long getTargetSeqNo() {
@@ -71,12 +77,12 @@ public class JobTemplateDetailsDTO implements Serializable {
 		this.targetSeqNo = targetSeqNo;
 	}
 
-	public BigDecimal getTargetTypeSeqNo() {
-		return targetTypeSeqNo;
+	public Long getTargetClassSeqNo() {
+		return targetClassSeqNo;
 	}
 
-	public void setTargetTypeSeqNo(BigDecimal targetTypeSeqNo) {
-		this.targetTypeSeqNo = targetTypeSeqNo;
+	public void setTargetClassSeqNo(Long targetClassSeqNo) {
+		this.targetClassSeqNo = targetClassSeqNo;
 	}
 
 	public Integer getWeeksPlus() {
@@ -191,18 +197,18 @@ public class JobTemplateDetailsDTO implements Serializable {
 		this.durationFlag = durationFlag;
 	}
 
-	public JobTemplateDetailsDTO(long jobTemplateSeqNo, long jobLevelNo, Long seqNo, Long jobTypeSeqNo,
-			long targetSeqNo, BigDecimal targetTypeSeqNo, Integer weeksPlus, Integer monthsPlus, Integer daysPlus,
-			Integer durDays, Integer durHours, Integer durMinutes, Integer durMonths, Integer durSeconds,
-			Integer durWeeks, Integer hoursPlus, Integer minutesPlus, Integer predecessorSeqNo, Integer secondsPlus,
+	public JobTemplateDetailsDTO(long jobTemplateSeqNo, long jobLevelNo, Long seqNo, Long jobSeqNo, long targetSeqNo,
+			Long targetClassSeqNo, Integer weeksPlus, Integer monthsPlus, Integer daysPlus, Integer durDays,
+			Integer durHours, Integer durMinutes, Integer durMonths, Integer durSeconds, Integer durWeeks,
+			Integer hoursPlus, Integer minutesPlus, Integer predecessorSeqNo, Integer secondsPlus,
 			Character durationFlag) {
 		super();
 		this.jobTemplateSeqNo = jobTemplateSeqNo;
 		this.jobLevelNo = jobLevelNo;
 		this.seqNo = seqNo;
-		this.jobTypeSeqNo = jobTypeSeqNo;
+		this.jobSeqNo = jobSeqNo;
 		this.targetSeqNo = targetSeqNo;
-		this.targetTypeSeqNo = targetTypeSeqNo;
+		this.targetClassSeqNo = targetClassSeqNo;
 		this.weeksPlus = weeksPlus;
 		this.monthsPlus = monthsPlus;
 		this.daysPlus = daysPlus;

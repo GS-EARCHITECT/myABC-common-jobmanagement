@@ -1,8 +1,6 @@
 package job_template_details_mgmt.model.details;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-
 import javax.persistence.*;
 
 /**
@@ -11,42 +9,45 @@ import javax.persistence.*;
  */
 @Embeddable
 public class JobTemplateDetailsPK implements Serializable {
-	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8329910430372319488L;
 
 	@Column(name = "JOB_TEMPLATE_SEQ_NO")
-	private long jobTemplateSeqNo;
+	private Long jobTemplateSeqNo;
 
 	@Column(name = "JOB_LEVEL_NO")
-	private long jobLevelNo;
+	private Long jobLevelNo;
 
 	@Column(name = "SEQ_NO")
 	private Long seqNo;
 
-	@Column(name = "JOB_TYPE_SEQ_NO")
-	private Long jobTypeSeqNo;
+	@Column(name = "JOB_SEQ_NO")
+	private Long JOB_SEQ_NO;
 
 	@Column(name = "TARGET_SEQ_NO")
-	private long targetSeqNo;
+	private Long targetSeqNo;
 
-	@Column(name = "TARGET_TYPE_SEQ_NO")
-	private BigDecimal targetTypeSeqNo;
+	@Column(name = "TARGET_CLASS_SEQ_NO")
+	private Long targetClassSeqNo;
 
 	public JobTemplateDetailsPK() {
 	}
 
-	public long getJobTemplateSeqNo() {
+	public Long getJobTemplateSeqNo() {
 		return jobTemplateSeqNo;
 	}
 
-	public void setJobTemplateSeqNo(long jobTemplateSeqNo) {
+	public void setJobTemplateSeqNo(Long jobTemplateSeqNo) {
 		this.jobTemplateSeqNo = jobTemplateSeqNo;
 	}
 
-	public long getJobLevelNo() {
+	public Long getJobLevelNo() {
 		return jobLevelNo;
 	}
 
-	public void setJobLevelNo(long jobLevelNo) {
+	public void setJobLevelNo(Long jobLevelNo) {
 		this.jobLevelNo = jobLevelNo;
 	}
 
@@ -58,40 +59,48 @@ public class JobTemplateDetailsPK implements Serializable {
 		this.seqNo = seqNo;
 	}
 
-	public Long getJobTypeSeqNo() {
-		return jobTypeSeqNo;
+	public Long getJobClassSeqNo() {
+		return JOB_SEQ_NO;
 	}
 
-	public void setJobTypeSeqNo(Long jobTypeSeqNo) {
-		this.jobTypeSeqNo = jobTypeSeqNo;
+	public void setJobClassSeqNo(Long JOB_SEQ_NO) {
+		this.JOB_SEQ_NO = JOB_SEQ_NO;
 	}
 
-	public long getTargetSeqNo() {
+	public Long getTargetSeqNo() {
 		return targetSeqNo;
 	}
 
-	public void setTargetSeqNo(long targetSeqNo) {
+	public void setTargetSeqNo(Long targetSeqNo) {
 		this.targetSeqNo = targetSeqNo;
 	}
 
-	public BigDecimal getTargetTypeSeqNo() {
-		return targetTypeSeqNo;
+	public Long getTargetClassSeqNo() {
+		return targetClassSeqNo;
 	}
 
-	public void setTargetTypeSeqNo(BigDecimal targetTypeSeqNo) {
-		this.targetTypeSeqNo = targetTypeSeqNo;
+	public void setTargetClassSeqNo(Long targetClassSeqNo) {
+		this.targetClassSeqNo = targetClassSeqNo;
+	}
+
+	public Long getJOB_SEQ_NO() {
+		return JOB_SEQ_NO;
+	}
+
+	public void setJOB_SEQ_NO(Long jOB_SEQ_NO) {
+		JOB_SEQ_NO = jOB_SEQ_NO;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (jobLevelNo ^ (jobLevelNo >>> 32));
-		result = prime * result + (int) (jobTemplateSeqNo ^ (jobTemplateSeqNo >>> 32));
-		result = prime * result + ((jobTypeSeqNo == null) ? 0 : jobTypeSeqNo.hashCode());
+		result = prime * result + ((JOB_SEQ_NO == null) ? 0 : JOB_SEQ_NO.hashCode());
+		result = prime * result + ((jobLevelNo == null) ? 0 : jobLevelNo.hashCode());
+		result = prime * result + ((jobTemplateSeqNo == null) ? 0 : jobTemplateSeqNo.hashCode());
 		result = prime * result + ((seqNo == null) ? 0 : seqNo.hashCode());
-		result = prime * result + (int) (targetSeqNo ^ (targetSeqNo >>> 32));
-		result = prime * result + ((targetTypeSeqNo == null) ? 0 : targetTypeSeqNo.hashCode());
+		result = prime * result + ((targetClassSeqNo == null) ? 0 : targetClassSeqNo.hashCode());
+		result = prime * result + ((targetSeqNo == null) ? 0 : targetSeqNo.hashCode());
 		return result;
 	}
 
@@ -104,39 +113,48 @@ public class JobTemplateDetailsPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		JobTemplateDetailsPK other = (JobTemplateDetailsPK) obj;
-		if (jobLevelNo != other.jobLevelNo)
-			return false;
-		if (jobTemplateSeqNo != other.jobTemplateSeqNo)
-			return false;
-		if (jobTypeSeqNo == null) {
-			if (other.jobTypeSeqNo != null)
+		if (JOB_SEQ_NO == null) {
+			if (other.JOB_SEQ_NO != null)
 				return false;
-		} else if (!jobTypeSeqNo.equals(other.jobTypeSeqNo))
+		} else if (!JOB_SEQ_NO.equals(other.JOB_SEQ_NO))
+			return false;
+		if (jobLevelNo == null) {
+			if (other.jobLevelNo != null)
+				return false;
+		} else if (!jobLevelNo.equals(other.jobLevelNo))
+			return false;
+		if (jobTemplateSeqNo == null) {
+			if (other.jobTemplateSeqNo != null)
+				return false;
+		} else if (!jobTemplateSeqNo.equals(other.jobTemplateSeqNo))
 			return false;
 		if (seqNo == null) {
 			if (other.seqNo != null)
 				return false;
 		} else if (!seqNo.equals(other.seqNo))
 			return false;
-		if (targetSeqNo != other.targetSeqNo)
-			return false;
-		if (targetTypeSeqNo == null) {
-			if (other.targetTypeSeqNo != null)
+		if (targetClassSeqNo == null) {
+			if (other.targetClassSeqNo != null)
 				return false;
-		} else if (!targetTypeSeqNo.equals(other.targetTypeSeqNo))
+		} else if (!targetClassSeqNo.equals(other.targetClassSeqNo))
+			return false;
+		if (targetSeqNo == null) {
+			if (other.targetSeqNo != null)
+				return false;
+		} else if (!targetSeqNo.equals(other.targetSeqNo))
 			return false;
 		return true;
 	}
 
-	public JobTemplateDetailsPK(long jobTemplateSeqNo, long jobLevelNo, Long seqNo, Long jobTypeSeqNo,
-			long targetSeqNo, BigDecimal targetTypeSeqNo) {
+	public JobTemplateDetailsPK(Long jobTemplateSeqNo, Long jobLevelNo, Long seqNo, Long jOB_SEQ_NO, Long targetSeqNo,
+			Long targetClassSeqNo) {
 		super();
 		this.jobTemplateSeqNo = jobTemplateSeqNo;
 		this.jobLevelNo = jobLevelNo;
 		this.seqNo = seqNo;
-		this.jobTypeSeqNo = jobTypeSeqNo;
+		JOB_SEQ_NO = jOB_SEQ_NO;
 		this.targetSeqNo = targetSeqNo;
-		this.targetTypeSeqNo = targetTypeSeqNo;
+		this.targetClassSeqNo = targetClassSeqNo;
 	}
 
 }

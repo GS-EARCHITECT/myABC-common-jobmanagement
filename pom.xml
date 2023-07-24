@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>myABC</groupId>
-	<artifactId>supporting.job_mgmt</artifactId>
+	<artifactId>supporting.job_mgmt.admin</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>supporting.job_mgmt</name>
+	<name>supporting.job_mgmt.admin</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -89,6 +89,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>supporting.job_mgmt</finalName>
+		<finalName>supporting.job_mgmt.admin</finalName>
 	</build>
 </project>

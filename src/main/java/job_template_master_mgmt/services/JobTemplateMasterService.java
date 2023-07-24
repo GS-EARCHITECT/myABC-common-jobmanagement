@@ -29,8 +29,7 @@ public class JobTemplateMasterService implements I_JobTemplateMasterService
 	public JobTemplateMasterDTO newJobTemplateMaster(JobTemplateMasterDTO jobStructureDetailsDTO) 
 	{
 		JobTemplateMasterPK jobTemplateMasterPK = new JobTemplateMasterPK();
-		jobTemplateMasterPK.setJobTemplateSeqNo(jobStructureDetailsDTO.getJobTemplateSeqNo());
-		jobTemplateMasterPK.setServiceCategorySeqNo(jobStructureDetailsDTO.getServiceCategorySeqNo());
+		jobTemplateMasterPK.setJobTemplateSeqNo(jobStructureDetailsDTO.getJobTemplateSeqNo());		
 		jobTemplateMasterPK.setServiceSeqNo(jobStructureDetailsDTO.getServiceSeqNo());
 		JobTemplateMaster jobTemplateMaster2 = null;
 		JobTemplateMasterDTO jobTemplateMasterDTO = null;
@@ -73,7 +72,6 @@ public class JobTemplateMasterService implements I_JobTemplateMasterService
 	{
 		JobTemplateMasterPK jobTemplateMasterPK = new JobTemplateMasterPK();		
 		jobTemplateMasterPK.setJobTemplateSeqNo(jobTemplateMasterSeqNo);
-		jobTemplateMasterPK.setServiceCategorySeqNo(serviceCategorySeqNo);
 		jobTemplateMasterPK.setServiceSeqNo(serviceSeqNo);		
 		Optional<JobTemplateMaster> jobTemplateMaster = jobTemplateMasterRepo.findById(jobTemplateMasterPK);
 		JobTemplateMasterDTO jobTemplateMasterDTO = null;
@@ -89,7 +87,6 @@ public class JobTemplateMasterService implements I_JobTemplateMasterService
 	{
 		JobTemplateMasterPK jobTemplateMasterPK = new JobTemplateMasterPK();
 		jobTemplateMasterPK.setJobTemplateSeqNo(jobTemplateMasterDTO.getJobTemplateSeqNo());
-		jobTemplateMasterPK.setServiceCategorySeqNo(jobTemplateMasterDTO.getServiceCategorySeqNo());
 		jobTemplateMasterPK.setServiceSeqNo(jobTemplateMasterDTO.getServiceSeqNo());
 		JobTemplateMaster jobTemplateMaster2 = null;
 		Optional<JobTemplateMaster> jobTemplateMaster = jobTemplateMasterRepo.findById(jobTemplateMasterPK);
@@ -107,7 +104,6 @@ public class JobTemplateMasterService implements I_JobTemplateMasterService
 	{
 		JobTemplateMasterPK jobTemplateMasterPK = new JobTemplateMasterPK();		
 		jobTemplateMasterPK.setJobTemplateSeqNo(jobTemplateMasterSeqNo);
-		jobTemplateMasterPK.setServiceCategorySeqNo(serviceCategorySeqNo);
 		jobTemplateMasterPK.setServiceSeqNo(serviceSeqNo);
 		
 		if (jobTemplateMasterRepo.existsById(jobTemplateMasterPK)) 
@@ -143,7 +139,6 @@ public class JobTemplateMasterService implements I_JobTemplateMasterService
 	{
 		JobTemplateMasterDTO jobTemplateMasterDTO = new JobTemplateMasterDTO();
 		jobTemplateMasterDTO.setJobTemplateSeqNo(jobTemplateMaster.getId().getJobTemplateSeqNo());
-		jobTemplateMasterDTO.setServiceCategorySeqNo(jobTemplateMaster.getId().getServiceCategorySeqNo());
 		jobTemplateMasterDTO.setServiceSeqNo(jobTemplateMaster.getId().getServiceSeqNo());
 		jobTemplateMasterDTO.setRemarks(jobTemplateMaster.getRemarks());
 		jobTemplateMasterDTO.setStatus(jobTemplateMaster.getStatus());

@@ -1,8 +1,6 @@
 package job_template_master_mgmt.model.master;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-
 import javax.persistence.*;
 
 /**
@@ -15,55 +13,36 @@ public class JobTemplateMasterPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "JOB_TEMPLATE_SEQ_NO")
-	private long jobTemplateSeqNo;
+	private Long jobTemplateSeqNo;
 
 	@Column(name = "SERVICE_SEQ_NO")
-	private long serviceSeqNo;
-
-	@Column(name = "SERVICE_CATEGORY_SEQ_NO")
-	private BigDecimal serviceCategorySeqNo;
+	private Long serviceSeqNo;
 
 	public JobTemplateMasterPK() {
 	}
 
-	public long getJobTemplateSeqNo() {
+	public Long getJobTemplateSeqNo() {
 		return this.jobTemplateSeqNo;
 	}
 
-	public void setJobTemplateSeqNo(long jobTemplateSeqNo) {
+	public void setJobTemplateSeqNo(Long jobTemplateSeqNo) {
 		this.jobTemplateSeqNo = jobTemplateSeqNo;
 	}
 
-	public long getServiceSeqNo() {
+	public Long getServiceSeqNo() {
 		return this.serviceSeqNo;
 	}
 
-	public void setServiceSeqNo(long serviceSeqNo) {
+	public void setServiceSeqNo(Long serviceSeqNo) {
 		this.serviceSeqNo = serviceSeqNo;
-	}
-
-	public BigDecimal getServiceCategorySeqNo() {
-		return this.serviceCategorySeqNo;
-	}
-
-	public void setServiceCategorySeqNo(BigDecimal serviceCategorySeqNo) {
-		this.serviceCategorySeqNo = serviceCategorySeqNo;
-	}
-
-	public JobTemplateMasterPK(long jobTemplateSeqNo, long serviceSeqNo, BigDecimal serviceCategorySeqNo) {
-		super();
-		this.jobTemplateSeqNo = jobTemplateSeqNo;
-		this.serviceSeqNo = serviceSeqNo;
-		this.serviceCategorySeqNo = serviceCategorySeqNo;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (jobTemplateSeqNo ^ (jobTemplateSeqNo >>> 32));
-		result = prime * result + ((serviceCategorySeqNo == null) ? 0 : serviceCategorySeqNo.hashCode());
-		result = prime * result + (int) (serviceSeqNo ^ (serviceSeqNo >>> 32));
+		result = prime * result + ((jobTemplateSeqNo == null) ? 0 : jobTemplateSeqNo.hashCode());
+		result = prime * result + ((serviceSeqNo == null) ? 0 : serviceSeqNo.hashCode());
 		return result;
 	}
 
@@ -76,16 +55,23 @@ public class JobTemplateMasterPK implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		JobTemplateMasterPK other = (JobTemplateMasterPK) obj;
-		if (jobTemplateSeqNo != other.jobTemplateSeqNo)
-			return false;
-		if (serviceCategorySeqNo == null) {
-			if (other.serviceCategorySeqNo != null)
+		if (jobTemplateSeqNo == null) {
+			if (other.jobTemplateSeqNo != null)
 				return false;
-		} else if (!serviceCategorySeqNo.equals(other.serviceCategorySeqNo))
+		} else if (!jobTemplateSeqNo.equals(other.jobTemplateSeqNo))
 			return false;
-		if (serviceSeqNo != other.serviceSeqNo)
+		if (serviceSeqNo == null) {
+			if (other.serviceSeqNo != null)
+				return false;
+		} else if (!serviceSeqNo.equals(other.serviceSeqNo))
 			return false;
 		return true;
+	}
+
+	public JobTemplateMasterPK(Long jobTemplateSeqNo, Long serviceSeqNo) {
+		super();
+		this.jobTemplateSeqNo = jobTemplateSeqNo;
+		this.serviceSeqNo = serviceSeqNo;
 	}
 
 }

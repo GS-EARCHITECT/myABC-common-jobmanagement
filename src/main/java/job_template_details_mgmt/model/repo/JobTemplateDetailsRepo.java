@@ -14,12 +14,9 @@ public interface JobTemplateDetailsRepo extends CrudRepository<JobTemplateDetail
 {
 	@Modifying
 	@Query(value = "delete from JOB_TEMPLATE_DETAILS  where JOB_TEMPLATE_SEQ_NO in :jobTemplateDetailsSeqNos", nativeQuery = true)
-	void deleteSelectJobTemplateDetails(@Param(value = "jobTemplateDetailsSeqNos") ArrayList<Long> jobTemplateDetailsSeqNos);
+	void delSelectJobTemplateDetails(@Param(value = "jobTemplateDetailsSeqNos") ArrayList<Long> jobTemplateDetailsSeqNos);
 
 	@Query(value = "SELECT * JOB_TEMPLATE_DETAILS where JOB_TEMPLATE_SEQ_NO in :jobTemplateDetailsSeqNos ORDER BY JOB_TEMPLATE_SEQ_NO", nativeQuery = true)
 	ArrayList<JobTemplateDetails> getSelectJobTemplateDetails(@Param("jobTemplateDetailsSeqNos") ArrayList<Long> jobTemplateDetailsSeqNos);
-	
-	@Query(value = "SELECT * FROM JOB_TEMPLATE_DETAILS where job_template_seq_no = :jobTemplateSeqNo ORDER BY seq_no",nativeQuery = true) 
-	ArrayList<JobTemplateDetails> getJobsForTemplate(@Param("jobTemplateSeqNo") Long jobTemplateSeqNo);
 	
 }

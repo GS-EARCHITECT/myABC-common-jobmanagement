@@ -1,15 +1,9 @@
-/common/
-/job_class_master_mgmt/
-/job_class_structure_mgmt/
-/job_master_mgmt/
 /job_metrics_mgmt/
 /job_structure_details_mgmt/
 /job_template_details_mgmt/
 /job_template_master_mgmt/
 /job_type_level_master_mgmt/
-/job_type_master_mgmt/
-/job_type_structure_details_mgmt/
 /job_type_target_details/
-/job_work_details_mgmt/
-/job_work_master_mgmt/
 /main/
+/job_class_structure_details_mgmt/
+/job_structure_target_details_mgmt/
