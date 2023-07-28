@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
-import job_template_details_mgmt.model.dto.JobTemplateDetailsDTO;
-import job_template_details_mgmt.services.I_JobTemplateDetailsService;
+import job_template_details_mgmt.model.dto.JobTemplateDetail_DTO;
+import job_template_details_mgmt.services.I_JobTemplateDetails_Service;
 
 @RestController
 @RequestMapping("/jobTemplateDetailsMgmt")
@@ -27,31 +27,31 @@ public class JobTemplateDetailsController {
 	// LoggerFactory.getLogger(JobTemplateDetails_Controller.class);
 
 	@Autowired
-	private I_JobTemplateDetailsService jobTemplateDetailsService;
+	private I_JobTemplateDetails_Service jobTemplateDetailsService;
 
 	@PostMapping("/new")
-	public ResponseEntity<JobTemplateDetailsDTO> newJobTemplateDetail(@RequestBody JobTemplateDetailsDTO jobDTO) {
-		JobTemplateDetailsDTO JobTemplateDetailsDTO2 = jobTemplateDetailsService.newJobTemplateDetail(jobDTO);
+	public ResponseEntity<JobTemplateDetail_DTO> newJobTemplateDetail(@RequestBody JobTemplateDetail_DTO jobDTO) {
+		JobTemplateDetail_DTO JobTemplateDetail_DTO2 = jobTemplateDetailsService.newJobTemplateDetail(jobDTO);
 		HttpHeaders httpHeaders = new HttpHeaders();
-		return new ResponseEntity<>(JobTemplateDetailsDTO2, httpHeaders, HttpStatus.CREATED);
+		return new ResponseEntity<>(JobTemplateDetail_DTO2, httpHeaders, HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/getSelectJobTemplateDetails", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<ArrayList<JobTemplateDetailsDTO>> getSelectJobTemplateDetails(
+	public ResponseEntity<ArrayList<JobTemplateDetail_DTO>> getSelectJobTemplateDetails(
 			@RequestBody ArrayList<Long> jobTemplateDetailsSeqNos) {
-		ArrayList<JobTemplateDetailsDTO> JobTemplateDetailsDTOs = jobTemplateDetailsService
+		ArrayList<JobTemplateDetail_DTO> JobTemplateDetail_DTOs = jobTemplateDetailsService
 				.getSelectJobTemplateDetails(jobTemplateDetailsSeqNos);
-		return new ResponseEntity<>(JobTemplateDetailsDTOs, HttpStatus.OK);
+		return new ResponseEntity<>(JobTemplateDetail_DTOs, HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/getAllJobTemplateDetails", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<ArrayList<JobTemplateDetailsDTO>> getAllJobTemplateDetails() {
-		ArrayList<JobTemplateDetailsDTO> JobTemplateDetailsDTOs = jobTemplateDetailsService.getAllJobTemplateDetails();
-		return new ResponseEntity<>(JobTemplateDetailsDTOs, HttpStatus.OK);
+	public ResponseEntity<ArrayList<JobTemplateDetail_DTO>> getAllJobTemplateDetails() {
+		ArrayList<JobTemplateDetail_DTO> JobTemplateDetail_DTOs = jobTemplateDetailsService.getAllJobTemplateDetails();
+		return new ResponseEntity<>(JobTemplateDetail_DTOs, HttpStatus.OK);
 	}
 
 	@PutMapping("/jobType")
-	public void updateJobTemplateDetail(@RequestBody JobTemplateDetailsDTO jobDTO) {
+	public void updateJobTemplateDetail(@RequestBody JobTemplateDetail_DTO jobDTO) {
 		jobTemplateDetailsService.updJobTemplateDetail(jobDTO);
 	}
 

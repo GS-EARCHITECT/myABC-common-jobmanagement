@@ -1,9 +1,5 @@
-/job_metrics_mgmt/
-/job_structure_details_mgmt/
-/job_template_details_mgmt/
-/job_template_master_mgmt/
-/job_type_level_master_mgmt/
 /job_type_target_details/
 /main/
-/job_class_structure_details_mgmt/
 /job_structure_target_details_mgmt/
+/job_template_master_mgmt/
+/job_target_details/
