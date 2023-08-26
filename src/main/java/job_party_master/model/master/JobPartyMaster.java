@@ -1,16 +1,15 @@
-package job_master_mgmt.model.master;
+package job_party_master.model.master;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The persistent class for the JOB_MASTER database table.
+ * The persistent class for the JOB_PARTY_MASTER database table.
  * 
  */
 @Entity
-@Table(name = "JOB_MASTER")
-public class JobMaster implements Serializable 
-{
+@Table(name = "JOB_PARTY_MASTER")
+public class JobPartyMaster implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -43,17 +42,17 @@ public class JobMaster implements Serializable
 	@Column(name = "JOB_ID")
 	private String jobId;
 
+	@Column(name = "MASTER_JOB_SEQ_NO")
+	private Long masterJobSeqNo;
+
 	@Column(name = "PARTY_SEQ_NO")
 	private Long partySeqNo;
-
-	@Column(name = "REMARK")
-	private String remark;
 
 	@Column(name = "SPECIFICATION_SEQ_NO")
 	private Long specificationSeqNo;
 
 	@Column(name = "STATUS")
-	private String status;
+	private Character status;
 
 	@Column(name = "TAX_PER")
 	private Float taxPer;
@@ -70,7 +69,7 @@ public class JobMaster implements Serializable
 	@Column(name = "UNIT_RATE_SEQ_NO")
 	private Long unitRateSeqNo;
 
-	public JobMaster() {
+	public JobPartyMaster() {
 	}
 
 	public Long getJobSeqNo() {
@@ -145,20 +144,20 @@ public class JobMaster implements Serializable
 		this.jobId = jobId;
 	}
 
+	public Long getMasterJobSeqNo() {
+		return this.masterJobSeqNo;
+	}
+
+	public void setMasterJobSeqNo(Long masterJobSeqNo) {
+		this.masterJobSeqNo = masterJobSeqNo;
+	}
+
 	public Long getPartySeqNo() {
 		return this.partySeqNo;
 	}
 
 	public void setPartySeqNo(Long partySeqNo) {
 		this.partySeqNo = partySeqNo;
-	}
-
-	public String getRemark() {
-		return this.remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
 	}
 
 	public Long getSpecificationSeqNo() {
@@ -169,11 +168,11 @@ public class JobMaster implements Serializable
 		this.specificationSeqNo = specificationSeqNo;
 	}
 
-	public String getStatus() {
+	public Character getStatus() {
 		return this.status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Character status) {
 		this.status = status;
 	}
 
@@ -221,7 +220,8 @@ public class JobMaster implements Serializable
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (jobSeqNo ^ (jobSeqNo >>> 32));
+		result = prime * result + ((jobSeqNo == null) ? 0 : jobSeqNo.hashCode());
+		result = prime * result + ((masterJobSeqNo == null) ? 0 : masterJobSeqNo.hashCode());
 		return result;
 	}
 
@@ -233,15 +233,24 @@ public class JobMaster implements Serializable
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		JobMaster other = (JobMaster) obj;
-		if (jobSeqNo != other.jobSeqNo)
+		JobPartyMaster other = (JobPartyMaster) obj;
+		if (jobSeqNo == null) {
+			if (other.jobSeqNo != null)
+				return false;
+		} else if (!jobSeqNo.equals(other.jobSeqNo))
+			return false;
+		if (masterJobSeqNo == null) {
+			if (other.masterJobSeqNo != null)
+				return false;
+		} else if (!masterJobSeqNo.equals(other.masterJobSeqNo))
 			return false;
 		return true;
 	}
 
-	public JobMaster(Long jobSeqNo, String description, Float discPer, Long discSeqNo, Float discVal, Float duration,
-			Long durationCodeSeqNo, String job, String jobId, Long partySeqNo, String remark, Long specificationSeqNo,
-			String status, Float taxPer, Long taxSeqNo, Float taxVal, Float unitRate, Long unitRateSeqNo) {
+	public JobPartyMaster(Long jobSeqNo, String description, Float discPer, Long discSeqNo, Float discVal,
+			Float duration, Long durationCodeSeqNo, String job, String jobId, Long masterJobSeqNo, Long partySeqNo,
+			Long specificationSeqNo, Character status, Float taxPer, Long taxSeqNo, Float taxVal, Float unitRate,
+			Long unitRateSeqNo) {
 		super();
 		this.jobSeqNo = jobSeqNo;
 		this.description = description;
@@ -252,8 +261,8 @@ public class JobMaster implements Serializable
 		this.durationCodeSeqNo = durationCodeSeqNo;
 		this.job = job;
 		this.jobId = jobId;
+		this.masterJobSeqNo = masterJobSeqNo;
 		this.partySeqNo = partySeqNo;
-		this.remark = remark;
 		this.specificationSeqNo = specificationSeqNo;
 		this.status = status;
 		this.taxPer = taxPer;

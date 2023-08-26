@@ -1,13 +1,12 @@
-package job_master_mgmt.model.dto;
+package job_party_master.model.dto;
 
 import java.io.Serializable;
 
-public class JobMaster_DTO implements Serializable {
-
+public class JobPartyMaster_DTO implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7900383033603744903L;
+	private static final long serialVersionUID = -1430754654232647250L;
 	private Long jobSeqNo;
 	private String description;
 	private Float discPer;
@@ -17,10 +16,10 @@ public class JobMaster_DTO implements Serializable {
 	private Long durationCodeSeqNo;
 	private String job;
 	private String jobId;
+	private Long masterJobSeqNo;
 	private Long partySeqNo;
-	private String remark;
 	private Long specificationSeqNo;
-	private String status;
+	private Character status;
 	private Float taxPer;
 	private Long taxSeqNo;
 	private Float taxVal;
@@ -99,20 +98,20 @@ public class JobMaster_DTO implements Serializable {
 		this.jobId = jobId;
 	}
 
+	public Long getMasterJobSeqNo() {
+		return masterJobSeqNo;
+	}
+
+	public void setMasterJobSeqNo(Long masterJobSeqNo) {
+		this.masterJobSeqNo = masterJobSeqNo;
+	}
+
 	public Long getPartySeqNo() {
 		return partySeqNo;
 	}
 
 	public void setPartySeqNo(Long partySeqNo) {
 		this.partySeqNo = partySeqNo;
-	}
-
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
 	}
 
 	public Long getSpecificationSeqNo() {
@@ -123,11 +122,11 @@ public class JobMaster_DTO implements Serializable {
 		this.specificationSeqNo = specificationSeqNo;
 	}
 
-	public String getStatus() {
+	public Character getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Character status) {
 		this.status = status;
 	}
 
@@ -171,9 +170,9 @@ public class JobMaster_DTO implements Serializable {
 		this.unitRateSeqNo = unitRateSeqNo;
 	}
 
-	public JobMaster_DTO(Long jobSeqNo, String description, Float discPer, Long discSeqNo, Float discVal,
-			Float duration, Long durationCodeSeqNo, String job, String jobId, Long partySeqNo, String remark,
-			Long specificationSeqNo, String status, Float taxPer, Long taxSeqNo, Float taxVal, Float unitRate,
+	public JobPartyMaster_DTO(Long jobSeqNo, String description, Float discPer, Long discSeqNo, Float discVal,
+			Float duration, Long durationCodeSeqNo, String job, String jobId, Long masterJobSeqNo, Long partySeqNo,
+			Long specificationSeqNo, Character status, Float taxPer, Long taxSeqNo, Float taxVal, Float unitRate,
 			Long unitRateSeqNo) {
 		super();
 		this.jobSeqNo = jobSeqNo;
@@ -185,8 +184,8 @@ public class JobMaster_DTO implements Serializable {
 		this.durationCodeSeqNo = durationCodeSeqNo;
 		this.job = job;
 		this.jobId = jobId;
+		this.masterJobSeqNo = masterJobSeqNo;
 		this.partySeqNo = partySeqNo;
-		this.remark = remark;
 		this.specificationSeqNo = specificationSeqNo;
 		this.status = status;
 		this.taxPer = taxPer;
@@ -196,7 +195,7 @@ public class JobMaster_DTO implements Serializable {
 		this.unitRateSeqNo = unitRateSeqNo;
 	}
 
-	public JobMaster_DTO() {
+	public JobPartyMaster_DTO() {
 		super();
 	}
 
