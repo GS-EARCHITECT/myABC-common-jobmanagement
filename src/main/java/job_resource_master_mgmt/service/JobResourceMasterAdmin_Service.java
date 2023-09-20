@@ -91,6 +91,14 @@ public class JobResourceMasterAdmin_Service implements I_JobResourceMasterAdmin_
 		return jobResourceMaster_DTOs;
 	}
 
+	public ArrayList<JobResourceMaster_DTO> getSelectResourcesByDirection(Character dFlag)
+	{
+		ArrayList<JobResourceMaster> jobResourceMasters = jobResourceMasterAdminRepo.getSelectResourcesByDirection(dFlag);
+		ArrayList<JobResourceMaster_DTO> jobResourceMaster_DTOs = new ArrayList<JobResourceMaster_DTO>();
+		jobResourceMaster_DTOs = jobResourceMasters != null ? this.getJobResourceMaster_DTOs(jobResourceMasters) : null;
+		return jobResourceMaster_DTOs;
+	}
+	
 	public ArrayList<JobResourceMaster_DTO> getSelectJobResourcesByTargets( ArrayList<Long> trgSeqNos)	
 	{
 		ArrayList<JobResourceMaster> lMasters = jobResourceMasterAdminRepo.getSelectResourcesByTargets(trgSeqNos);
@@ -120,7 +128,14 @@ public class JobResourceMasterAdmin_Service implements I_JobResourceMasterAdmin_
 		
 		return;
 	}
-
+	
+	public void delSelectResourcesByDirection(Character dFlag) 
+	{
+		jobResourceMasterAdminRepo.delSelectResourcesByDirection(dFlag);
+		
+		return;
+	}
+	
 	public void delSelectJobResourcesByResources( ArrayList<Long> resourceSeqNos) 
 	{
 		jobResourceMasterAdminRepo.delSelectResourcesByResources( resourceSeqNos);
@@ -168,6 +183,7 @@ public class JobResourceMasterAdmin_Service implements I_JobResourceMasterAdmin_
 		lDTO.setModeSeqNo(lMaster.getId().getModeSeqNo());
 		lDTO.setRateSeqNo(lMaster.getRateSeqNo());
 		lDTO.setReturnflag(lMaster.getReturnflag());
+		lDTO.setDirectionflag(lMaster.getDirectionflag());
 		return lDTO;
 	}
 
@@ -187,6 +203,7 @@ public class JobResourceMasterAdmin_Service implements I_JobResourceMasterAdmin_
 		lMaster.setQty(lDTO.getQty());
 		lMaster.setUnitRate(lMaster.getUnitRate());				
 		lMaster.setRateSeqNo(lDTO.getRateSeqNo());		
+		lMaster.setDirectionflag(lDTO.getDirectionflag());
 		return lMaster;
 	}
 }

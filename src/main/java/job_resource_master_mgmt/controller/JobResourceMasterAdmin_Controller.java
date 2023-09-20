@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,6 +62,14 @@ public class JobResourceMasterAdmin_Controller {
 			@RequestBody ArrayList<Long> jobSeqNos) {
 		ArrayList<JobResourceMaster_DTO> resourceDTOs = jobResourceMasterAdminServ
 				.getSelectJobResourcesByJobs(jobSeqNos);
+		return new ResponseEntity<>(resourceDTOs, HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/getSelectJobResourcesByDirection/{dFlag}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<ArrayList<JobResourceMaster_DTO>> getSelectJobResourcesByDirection(
+			@PathVariable Character dFlag)
+	{
+		ArrayList<JobResourceMaster_DTO> resourceDTOs = jobResourceMasterAdminServ.getSelectResourcesByDirection(dFlag);
 		return new ResponseEntity<>(resourceDTOs, HttpStatus.OK);
 	}
 

@@ -8,16 +8,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import job_asset_master_mgmt.model.dto.JobAssetMaster_DTO;
 import job_asset_master_mgmt.model.master.JobAssetMasterPK;
 import job_asset_master_mgmt.service.I_JobAssetMasterAdmin_Service;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -64,6 +63,13 @@ public class JobAssetMasterAdmin_Controller {
 		return new ResponseEntity<>(resourceDTOs, HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/getSelectJobAssetsByDirection/{dFlag}", produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<ArrayList<JobAssetMaster_DTO>> getSelectJobAssetsByDirection(	@PathVariable Character dFlag) {
+		ArrayList<JobAssetMaster_DTO> resourceDTOs = jobAssetMasterAdminServ.getSelectAssetsByDirection(dFlag);
+		return new ResponseEntity<>(resourceDTOs, HttpStatus.OK);
+	}
+
+	
 	@GetMapping(value = "/getSelectJobAssetsByTargets", produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<ArrayList<JobAssetMaster_DTO>> getSelectJobAssetsByTargets(
 			@RequestBody ArrayList<Long> targetSeqNos) {

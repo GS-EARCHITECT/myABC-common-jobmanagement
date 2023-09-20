@@ -12,11 +12,13 @@ public interface I_JobAssetMasterAdmin_Service
 	public ArrayList<JobAssetMaster_DTO> getSelectJobAssets(ArrayList<JobAssetMasterPK> jobAssetMasterPKs);	
 	public ArrayList<JobAssetMaster_DTO> getSelectJobAssetsByJobs( ArrayList<Long> jobSeqNos);
 	public ArrayList<JobAssetMaster_DTO> getSelectJobAssetsByTargets( ArrayList<Long> trgSeqNos);
-	public ArrayList<JobAssetMaster_DTO> getSelectJobAssetsByAssets( ArrayList<Long> assetSeqNos);		
+	public ArrayList<JobAssetMaster_DTO> getSelectJobAssetsByAssets( ArrayList<Long> assetSeqNos);
+	public ArrayList<JobAssetMaster_DTO> getSelectAssetsByDirection(Character dFlag);
 	public void delAllJobAssets();
 	public void delSelectJobAssets(ArrayList<JobAssetMasterPK> ids);
 	public void delSelectJobAssetsByJobs(ArrayList<Long> jobSeqNos);	
 	public void delSelectJobAssetsByAssets( ArrayList<Long> assetSeqNos);
 	public void delSelectJobAssetsByTargets( ArrayList<Long> trgSeqNos);
+	public void delSelectAssetsByDirection(Character dFlag);
 
 }

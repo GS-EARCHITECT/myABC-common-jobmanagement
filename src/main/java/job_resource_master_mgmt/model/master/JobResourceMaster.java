@@ -30,7 +30,18 @@ public class JobResourceMaster implements Serializable {
 	@Column(name = "UNIT_RATE")
 	private Float unitRate;
 
+	@Column(name = "DIRECTIONFLAG")
+	private Character directionflag;
+
 	public JobResourceMaster() {
+	}
+
+	public Character getDirectionflag() {
+		return directionflag;
+	}
+
+	public void setDirectionflag(Character directionflag) {
+		this.directionflag = directionflag;
 	}
 
 	public JobResourceMasterPK getId() {
@@ -82,7 +93,7 @@ public class JobResourceMaster implements Serializable {
 	}
 
 	public JobResourceMaster(JobResourceMasterPK id, Float qty, Long qtySeqNo, Long rateSeqNo, Character returnflag,
-			Float unitRate) {
+			Float unitRate, Character directionflag) {
 		super();
 		this.id = id;
 		this.qty = qty;
@@ -90,6 +101,7 @@ public class JobResourceMaster implements Serializable {
 		this.rateSeqNo = rateSeqNo;
 		this.returnflag = returnflag;
 		this.unitRate = unitRate;
+		this.directionflag = directionflag;
 	}
 
 }

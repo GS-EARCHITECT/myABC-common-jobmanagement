@@ -2,8 +2,7 @@ package job_resource_master_mgmt.model.dto;
 
 import java.io.Serializable;
 
-public class JobResourceMaster_DTO implements Serializable 
-{
+public class JobResourceMaster_DTO implements Serializable {
 
 	/**
 	 * 
@@ -20,6 +19,15 @@ public class JobResourceMaster_DTO implements Serializable
 	private Long rateSeqNo;
 	private Character returnflag;
 	private Float unitRate;
+	private Character directionflag;
+
+	public Character getDirectionflag() {
+		return directionflag;
+	}
+
+	public void setDirectionflag(Character directionflag) {
+		this.directionflag = directionflag;
+	}
 
 	public Long getJobSeqNo() {
 		return jobSeqNo;
@@ -110,7 +118,8 @@ public class JobResourceMaster_DTO implements Serializable
 	}
 
 	public JobResourceMaster_DTO(Long jobSeqNo, Long targetSeqNo, Long frLocSeqNo, Long toLocSeqNo, Long resourceSeqNo,
-			Long modeSeqNo, Float qty, Long qtySeqNo, Long rateSeqNo, Character returnflag, Float unitRate) {
+			Long modeSeqNo, Float qty, Long qtySeqNo, Long rateSeqNo, Character returnflag, Float unitRate,
+			Character directionflag) {
 		super();
 		this.jobSeqNo = jobSeqNo;
 		this.targetSeqNo = targetSeqNo;
@@ -123,6 +132,7 @@ public class JobResourceMaster_DTO implements Serializable
 		this.rateSeqNo = rateSeqNo;
 		this.returnflag = returnflag;
 		this.unitRate = unitRate;
+		this.directionflag = directionflag;
 	}
 
 	public JobResourceMaster_DTO() {

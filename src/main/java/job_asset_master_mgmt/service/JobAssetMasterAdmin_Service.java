@@ -83,6 +83,14 @@ public class JobAssetMasterAdmin_Service implements I_JobAssetMasterAdmin_Servic
 		return jobAssetMaster_DTOs;		
 	}
    
+	public ArrayList<JobAssetMaster_DTO> getSelectAssetsByDirection(Character dFlag)
+	{
+		ArrayList<JobAssetMaster> lMasters = (ArrayList<JobAssetMaster>) jobAssetMasterAdminRepo.getSelectAssetsByDirection(dFlag);
+		ArrayList<JobAssetMaster_DTO> jobAssetMaster_DTOs = new ArrayList<JobAssetMaster_DTO>();
+		jobAssetMaster_DTOs = lMasters != null ? this.getJobAssetMaster_DTOs(lMasters) : null;
+		return jobAssetMaster_DTOs;		
+	}
+	
 	public ArrayList<JobAssetMaster_DTO> getSelectJobAssetsByJobs( ArrayList<Long> jobSeqNos)
 	{
 		ArrayList<JobAssetMaster> jobAssetMasters = jobAssetMasterAdminRepo.getSelectAssetsByJobs(jobSeqNos);
@@ -121,6 +129,12 @@ public class JobAssetMasterAdmin_Service implements I_JobAssetMasterAdmin_Servic
 		return;
 	}
 
+	public void delSelectAssetsByDirection(Character dFlag) 
+	{
+		jobAssetMasterAdminRepo.delSelectAssetsByDirection(dFlag);		
+		return;
+	}
+	
 	public void delSelectJobAssetsByAssets( ArrayList<Long> assetSeqNos) 
 	{
 		jobAssetMasterAdminRepo.delSelectAssetsByAssets( assetSeqNos);
@@ -166,6 +180,7 @@ public class JobAssetMasterAdmin_Service implements I_JobAssetMasterAdmin_Servic
 		lDTO.setModeSeqNo(lMaster.getId().getModeSeqNo());
 		lDTO.setRateSeqNo(lMaster.getRateSeqNo());
 		lDTO.setReturnflag(lMaster.getReturnflag());
+		lDTO.setDirectionflag(lMaster.getDirectionflag());
 		return lDTO;
 	}
 
@@ -182,7 +197,8 @@ public class JobAssetMasterAdmin_Service implements I_JobAssetMasterAdmin_Servic
 		lMaster.setId(assetJobAssetMasterPK);
 		lMaster.setReturnflag(lMaster.getReturnflag());
 		lMaster.setUnitRate(lMaster.getUnitRate());				
-		lMaster.setRateSeqNo(lDTO.getRateSeqNo());		
+		lMaster.setRateSeqNo(lDTO.getRateSeqNo());	
+		lMaster.setDirectionflag(lDTO.getDirectionflag());
 		return lMaster;
 	}
 }

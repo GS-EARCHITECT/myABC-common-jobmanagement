@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import job_asset_master_mgmt.model.master.JobAssetMaster;
 import job_resource_master_mgmt.model.master.JobResourceMaster;
 import job_resource_master_mgmt.model.master.JobResourceMasterPK;
 
@@ -21,6 +23,9 @@ public interface JobResourceMasterAdmin_Repo extends JpaRepository<JobResourceMa
 	@Query(value = "SELECT * FROM JOB_RESOURCE_MASTER a WHERE a.resource_seq_no in :resourceSeqNos order by resource_seq_no", nativeQuery = true)
 	ArrayList<JobResourceMaster> getSelectResourcesByResources(@Param("resourceSeqNos") ArrayList<Long> resourceSeqNos);
 	
+	@Query(value = "SELECT * FROM JOB_RESOURCE_MASTER a WHERE upper(trim(a.directionflag)) = upper(trim(:dFlag)) order by resource_seq_no", nativeQuery = true)
+	ArrayList<JobResourceMaster> getSelectResourcesByDirection(@Param("dFlag") Character dFlag);
+		
 	@Query(value = "DELETE FROM JOB_RESOURCE_MASTER WHERE a.job_seq_no in :jobSeqNos", nativeQuery = true)
 	void delSelectResourcesByJobs(@Param("jobSeqNos") ArrayList<Long> jobSeqNos);
 
@@ -29,5 +34,8 @@ public interface JobResourceMasterAdmin_Repo extends JpaRepository<JobResourceMa
 	
 	@Query(value = "DELETE FROM JOB_RESOURCE_MASTER a WHERE a.target_seq_no in :trgSeqNos order by resource_seq_no", nativeQuery = true)
 	void delSelectResourcesByTargets(@Param("trgSeqNos") ArrayList<Long> trgSeqNos);
+
+	@Query(value = "delete FROM JOB_RESOURCE_MASTER a WHERE upper(trim(a.directionflag)) = upper(trim(:dFlag))", nativeQuery = true)
+	void delSelectResourcesByDirection(@Param("dFlag") Character dFlag);
 	
 }

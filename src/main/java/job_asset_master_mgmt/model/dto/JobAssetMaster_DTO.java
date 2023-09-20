@@ -18,6 +18,16 @@ public class JobAssetMaster_DTO implements Serializable
 	private Long rateSeqNo;
 	private Character returnflag;
 	private Float unitRate;
+	private Character directionflag;
+	
+	public Character getDirectionflag() 
+	{
+		return directionflag;
+	}
+
+	public void setDirectionflag(Character directionflag) {
+		this.directionflag = directionflag;
+	}
 
 	public Long getAssetSeqNo() {
 		return assetSeqNo;
@@ -92,7 +102,7 @@ public class JobAssetMaster_DTO implements Serializable
 	}
 
 	public JobAssetMaster_DTO(Long assetSeqNo, Long jobSeqNo, Long targetSeqNo, Long frLocSeqNo, Long toLocSeqNo,
-			Long modeSeqNo, Long rateSeqNo, Character returnflag, Float unitRate) {
+			Long modeSeqNo, Long rateSeqNo, Character returnflag, Float unitRate, Character directionflag) {
 		super();
 		this.assetSeqNo = assetSeqNo;
 		this.jobSeqNo = jobSeqNo;
@@ -103,6 +113,7 @@ public class JobAssetMaster_DTO implements Serializable
 		this.rateSeqNo = rateSeqNo;
 		this.returnflag = returnflag;
 		this.unitRate = unitRate;
+		this.directionflag = directionflag;
 	}
 
 	public JobAssetMaster_DTO() {

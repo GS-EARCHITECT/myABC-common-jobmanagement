@@ -12,11 +12,13 @@ public interface I_JobResourceMasterAdmin_Service
 	public ArrayList<JobResourceMaster_DTO> getSelectJobResources(ArrayList<JobResourceMasterPK> jobResourceMasterPKs);	
 	public ArrayList<JobResourceMaster_DTO> getSelectJobResourcesByJobs( ArrayList<Long> jobSeqNos);
 	public ArrayList<JobResourceMaster_DTO> getSelectJobResourcesByTargets( ArrayList<Long> trgSeqNos);
-	public ArrayList<JobResourceMaster_DTO> getSelectJobResourcesByResources( ArrayList<Long> resourceSeqNos);		
+	public ArrayList<JobResourceMaster_DTO> getSelectJobResourcesByResources( ArrayList<Long> resourceSeqNos);
+	public ArrayList<JobResourceMaster_DTO> getSelectResourcesByDirection(Character dFlag);
 	public void delAllJobResources();
 	public void delSelectJobResources(ArrayList<JobResourceMasterPK> ids);
 	public void delSelectJobResourcesByJobs(ArrayList<Long> jobSeqNos);	
 	public void delSelectJobResourcesByResources( ArrayList<Long> resourceSeqNos);
 	public void delSelectJobResourcesByTargets( ArrayList<Long> trgSeqNos);
+	public void delSelectResourcesByDirection(Character dFlag);
 
 }

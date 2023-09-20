@@ -8,81 +8,64 @@ import javax.persistence.*;
  * 
  */
 @Embeddable
-public class JobAssetMasterPK implements Serializable 
-{
-	// default serial version id, required for serializable classes.
+public class JobAssetMasterPK implements Serializable {
+	//default serial version id, required for serializable classes.
+	private static final long serialVersionUID = 1L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -8257014151788153155L;
+	@Column(name="ASSET_SEQ_NO")
+	private long assetSeqNo;
 
-	@Column(name = "ASSET_SEQ_NO")
-	private Long assetSeqNo;
+	@Column(name="JOB_SEQ_NO")
+	private long jobSeqNo;
 
-	@Column(name = "JOB_SEQ_NO")
-	private Long jobSeqNo;
+	@Column(name="TARGET_SEQ_NO")
+	private long targetSeqNo;
 
-	@Column(name = "TARGET_SEQ_NO")
-	private Long targetSeqNo;
+	@Column(name="FR_LOC_SEQ_NO")
+	private long frLocSeqNo;
 
-	@Column(name = "FR_LOC_SEQ_NO")
-	private Long frLocSeqNo;
+	@Column(name="TO_LOC_SEQ_NO")
+	private long toLocSeqNo;
 
-	@Column(name = "TO_LOC_SEQ_NO")
-	private Long toLocSeqNo;
-
-	@Column(name = "MODE_SEQ_NO")
-	private Long modeSeqNo;
+	@Column(name="MODE_SEQ_NO")
+	private long modeSeqNo;
 
 	public JobAssetMasterPK() {
 	}
-
-	public Long getAssetSeqNo() {
+	public long getAssetSeqNo() {
 		return this.assetSeqNo;
 	}
-
-	public void setAssetSeqNo(Long assetSeqNo) {
+	public void setAssetSeqNo(long assetSeqNo) {
 		this.assetSeqNo = assetSeqNo;
 	}
-
-	public Long getJobSeqNo() {
+	public long getJobSeqNo() {
 		return this.jobSeqNo;
 	}
-
-	public void setJobSeqNo(Long jobSeqNo) {
+	public void setJobSeqNo(long jobSeqNo) {
 		this.jobSeqNo = jobSeqNo;
 	}
-
-	public Long getTargetSeqNo() {
+	public long getTargetSeqNo() {
 		return this.targetSeqNo;
 	}
-
-	public void setTargetSeqNo(Long targetSeqNo) {
+	public void setTargetSeqNo(long targetSeqNo) {
 		this.targetSeqNo = targetSeqNo;
 	}
-
-	public Long getFrLocSeqNo() {
+	public long getFrLocSeqNo() {
 		return this.frLocSeqNo;
 	}
-
-	public void setFrLocSeqNo(Long frLocSeqNo) {
+	public void setFrLocSeqNo(long frLocSeqNo) {
 		this.frLocSeqNo = frLocSeqNo;
 	}
-
-	public Long getToLocSeqNo() {
+	public long getToLocSeqNo() {
 		return this.toLocSeqNo;
 	}
-
-	public void setToLocSeqNo(Long toLocSeqNo) {
+	public void setToLocSeqNo(long toLocSeqNo) {
 		this.toLocSeqNo = toLocSeqNo;
 	}
-
-	public Long getModeSeqNo() {
+	public long getModeSeqNo() {
 		return this.modeSeqNo;
 	}
-
-	public void setModeSeqNo(Long modeSeqNo) {
+	public void setModeSeqNo(long modeSeqNo) {
 		this.modeSeqNo = modeSeqNo;
 	}
 
@@ -93,10 +76,14 @@ public class JobAssetMasterPK implements Serializable
 		if (!(other instanceof JobAssetMasterPK)) {
 			return false;
 		}
-		JobAssetMasterPK castOther = (JobAssetMasterPK) other;
-		return (this.assetSeqNo == castOther.assetSeqNo) && (this.jobSeqNo == castOther.jobSeqNo)
-				&& (this.targetSeqNo == castOther.targetSeqNo) && (this.frLocSeqNo == castOther.frLocSeqNo)
-				&& (this.toLocSeqNo == castOther.toLocSeqNo) && (this.modeSeqNo == castOther.modeSeqNo);
+		JobAssetMasterPK castOther = (JobAssetMasterPK)other;
+		return 
+			(this.assetSeqNo == castOther.assetSeqNo)
+			&& (this.jobSeqNo == castOther.jobSeqNo)
+			&& (this.targetSeqNo == castOther.targetSeqNo)
+			&& (this.frLocSeqNo == castOther.frLocSeqNo)
+			&& (this.toLocSeqNo == castOther.toLocSeqNo)
+			&& (this.modeSeqNo == castOther.modeSeqNo);
 	}
 
 	public int hashCode() {
@@ -108,19 +95,7 @@ public class JobAssetMasterPK implements Serializable
 		hash = hash * prime + ((int) (this.frLocSeqNo ^ (this.frLocSeqNo >>> 32)));
 		hash = hash * prime + ((int) (this.toLocSeqNo ^ (this.toLocSeqNo >>> 32)));
 		hash = hash * prime + ((int) (this.modeSeqNo ^ (this.modeSeqNo >>> 32)));
-
+		
 		return hash;
 	}
-
-	public JobAssetMasterPK(Long assetSeqNo, Long jobSeqNo, Long targetSeqNo, Long frLocSeqNo, Long toLocSeqNo,
-			Long modeSeqNo) {
-		super();
-		this.assetSeqNo = assetSeqNo;
-		this.jobSeqNo = jobSeqNo;
-		this.targetSeqNo = targetSeqNo;
-		this.frLocSeqNo = frLocSeqNo;
-		this.toLocSeqNo = toLocSeqNo;
-		this.modeSeqNo = modeSeqNo;
-	}
-
 }
